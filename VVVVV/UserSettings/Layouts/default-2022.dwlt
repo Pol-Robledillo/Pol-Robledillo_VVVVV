@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 88
+  controlID: 108
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -468,7 +468,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Pixel Adventure 1/Assets/Items/Checkpoints/Checkpoint
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -476,16 +476,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Pixel Adventure 1/Assets/Items/Checkpoints/Checkpoint
+  - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: E:\Pol Robledillo\M17 - Programacion\UF1\PR2\VVVVV
+  m_LastProjectPath: E:\Repositories\Pol Robledillo_VVVVV\VVVVV
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 6a730000
-    m_LastClickedID: 29546
-    m_ExpandedIDs: 0000000072650000a2650000a4650000d6650000dc650000de650000e46500006273000064730000ea74000000ca9a3bffffff7f
+    m_SelectedIDs: 86650000
+    m_LastClickedID: 25990
+    m_ExpandedIDs: 000000008665000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -513,7 +513,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000072650000
+    m_ExpandedIDs: 0000000086650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000b46b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -653,9 +653,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d202ffff
-      m_LastClickedID: -64814
-      m_ExpandedIDs: 1afbffffb4630000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 2.4930212, y: 0.38389152, z: 0.043162752}
     speed: 2
-    m_Value: {x: 2.5388048, y: 0.49730963, z: 0.040488582}
+    m_Value: {x: 2.4930212, y: 0.38389152, z: 0.043162752}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1089,7 +1089,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 5.675183
     speed: 2
-    m_Value: 5.9426
+    m_Value: 5.675183
   m_Ortho:
     m_Target: 1
     speed: 2
