@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Character : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Character : MonoBehaviour
     private bool gravityChanged = false;
     private float gravity = 9.8f;
     private bool falling = false;
+    private Vector2 spawn = new Vector2(0, 0);
+    private bool isDead = false;
 
     void Awake()
     {
@@ -21,13 +24,17 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        DontDestroyOnLoad(gameObject);
+        spawn = transform.position;
     }
 
     private void Update()
     {
         ApplyGravity();
-        Movement();
+        if (!isDead)
+        {
+            Movement();
+        }
         CheckGrounded();
     }
 
@@ -100,5 +107,19 @@ public class Character : MonoBehaviour
         falling = !((hitLeft.collider != null && hitRight.collider != null) && (hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Ground") && hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Ground")));
         GetComponent<Animator>().SetBool("IsFalling", falling);
         Debug.Log(falling ? "Falling Colliding: " + hitLeft.collider : "Grounded Colliding: " + hitLeft.collider);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Death")
+        {
+            isDead = true;
+            GetComponent<Animator>().SetTrigger("Death");
+        }
+    }
+    public void ResetPosition()
+    {
+        transform.position = spawn;
+        GetComponent<Animator>().SetTrigger("Respawn");
+        isDead = false;
     }
 }
