@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Character : MonoBehaviour
 {
-    private static Character character;
+    public static Character character;
     private bool gravityChanged = false;
     private float gravity = 9.8f;
     private bool falling = false;
@@ -116,10 +116,18 @@ public class Character : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Death");
         }
     }
-    public void ResetPosition()
+    public void Respawn()
     {
         transform.position = spawn;
-        GetComponent<Animator>().SetTrigger("Respawn");
         isDead = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Death")
+        {
+            isDead = true;
+            GetComponent<Animator>().SetTrigger("Death");
+        }
     }
 }
