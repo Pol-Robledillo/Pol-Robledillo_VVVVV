@@ -31,11 +31,11 @@ public class Character : MonoBehaviour
     private void Update()
     {
         ApplyGravity();
+        CheckGrounded();
         if (!isDead)
         {
             Movement();
         }
-        CheckGrounded();
     }
 
     private void ApplyGravity()
@@ -51,7 +51,10 @@ public class Character : MonoBehaviour
         //transform.Translate(5f * Time.deltaTime * new Vector3(horizontal, 0.0f, vertical));
         MirrorCharacterHorizontal();
         StartAnimation();
-        ChangeGravity();
+        if (falling)
+        {
+            ChangeGravity();
+        }
     }
 
     private void MirrorCharacterHorizontal()
@@ -104,9 +107,8 @@ public class Character : MonoBehaviour
             hitLeft = Physics2D.Raycast(transform.position - new Vector3(0.3f, 0, 0), Vector2.down, 1f);
             hitRight = Physics2D.Raycast(transform.position + new Vector3(0.3f, 0, 0), Vector2.down, 1f);
         }
-        falling = !((hitLeft.collider != null && hitRight.collider != null) && (hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Ground") && hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Ground")));
+        falling = !((hitLeft.collider != null || hitRight.collider != null) && ((hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) || (hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Shooter") || hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Shooter"))));
         GetComponent<Animator>().SetBool("IsFalling", falling);
-        Debug.Log(falling ? "Falling Colliding: " + hitLeft.collider : "Grounded Colliding: " + hitLeft.collider);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -118,6 +120,7 @@ public class Character : MonoBehaviour
     }
     public void Respawn()
     {
+        ChangeGravity();
         transform.position = spawn;
         isDead = false;
     }
