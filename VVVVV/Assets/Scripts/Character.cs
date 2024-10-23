@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
         //transform.Translate(5f * Time.deltaTime * new Vector3(horizontal, 0.0f, vertical));
         MirrorCharacterHorizontal();
         StartAnimation();
-        if (falling)
+        if (!falling)
         {
             ChangeGravity();
         }
@@ -107,7 +107,7 @@ public class Character : MonoBehaviour
             hitLeft = Physics2D.Raycast(transform.position - new Vector3(0.3f, 0, 0), Vector2.down, 1f);
             hitRight = Physics2D.Raycast(transform.position + new Vector3(0.3f, 0, 0), Vector2.down, 1f);
         }
-        falling = !((hitLeft.collider != null || hitRight.collider != null) && ((hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) || (hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Shooter") || hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Shooter"))));
+        falling = !((hitLeft.collider != null || hitRight.collider != null) && (hitLeft.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || hitRight.collider.gameObject.layer == LayerMask.NameToLayer("Ground")));
         GetComponent<Animator>().SetBool("IsFalling", falling);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -120,13 +120,18 @@ public class Character : MonoBehaviour
     }
     public void Respawn()
     {
-        ChangeGravity();
+        if (gravityChanged)
+        {
+            gravityChanged = false;
+            transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+        }
         transform.position = spawn;
         isDead = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Death")
         {
             isDead = true;

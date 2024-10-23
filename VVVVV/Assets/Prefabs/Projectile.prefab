@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3463519396160344603}
   - component: {fileID: 1146773774056851890}
   - component: {fileID: 5580996119168134578}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Projectile
   m_TagString: Death
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &-3463519396160344603
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +144,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.024385005, y: -0.024385383}

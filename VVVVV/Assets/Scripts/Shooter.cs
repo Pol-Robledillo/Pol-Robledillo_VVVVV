@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public GameObject SpawnPoint;
+    public GameObject spawnPoint;
     private float time = 1f;
     public GameObject projectile;
-    private int count = 0;
     private Stack<GameObject> stack;
     private float projectileSpeed = 5f;
     public bool direction;
@@ -35,7 +34,7 @@ public class Shooter : MonoBehaviour
     {
         GameObject obj = stack.Pop();
         obj.SetActive(true);
-        obj.transform.position = transform.position;
+        obj.transform.position = spawnPoint.transform.position;
         return obj;
     }
     public GameObject Peek()
@@ -45,16 +44,16 @@ public class Shooter : MonoBehaviour
     private IEnumerator Shoot()
     {
         GetComponent<Animator>().SetTrigger("Attack");
-        if(count != 0)
+        if(stack.Count != 0)
         {
             Pop();
         }
         else
         {
-            GameObject bullet = Instantiate(projectile, SpawnPoint.transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(projectile, spawnPoint.transform.position, Quaternion.identity);
             bullet.GetComponent<Projectile>().shooter = this;
             bullet.GetComponent<Projectile>().speed = direction ? projectileSpeed : -projectileSpeed;
-            count++;
+            bullet.GetComponent<Projectile>().transform.localScale = new Vector3(direction ? 1 : -1, 1, 1);
         }
         yield return new WaitForSeconds(time);
         yield return Shoot();
