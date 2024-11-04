@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float speed = 5f;
+    public float speed = 5f;
     private Vector2 spawn = new Vector2(0, 0);
     public int patrolDistance;
 

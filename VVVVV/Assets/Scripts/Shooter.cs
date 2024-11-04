@@ -5,11 +5,12 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     public GameObject spawnPoint;
-    private float time = 1f;
+    public float time = 2f;
     public GameObject projectile;
     private Stack<GameObject> stack;
     private float projectileSpeed = 5f;
     public bool direction;
+    public AudioClip shootSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +44,9 @@ public class Shooter : MonoBehaviour
     }
     private IEnumerator Shoot()
     {
-        GetComponent<Animator>().SetTrigger("Attack");
-        if(stack.Count != 0)
+        this.GetComponent<Animator>().SetTrigger("Attack");
+        gameObject.GetComponent<AudioSource>().PlayOneShot(shootSound);
+        if (stack.Count != 0)
         {
             Pop();
         }
